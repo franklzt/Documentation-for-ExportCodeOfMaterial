@@ -1,4 +1,4 @@
-# ExportCodeOfMaterial
+# Documentaion for ExportCodeOfMaterial Plugin
 
 Export materials to HLSL shader code files for analysis and debugging.
 
@@ -106,8 +106,3 @@ If HLSL generation fails, try these alternatives:
 - **Output Format**: Markdown (.md)
 - **Platform Support**: Win64; The plugin should work for Mac, Linux but do not test. 
 - **Engine Version**: UE 5.6+
-
-## Support
-
-For questions or issues:
-- Email: 289663346@qq.com
