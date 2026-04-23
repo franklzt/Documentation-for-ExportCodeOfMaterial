@@ -136,7 +136,7 @@ If HLSL generation fails, try these alternatives:
 
 ## Technical Details
 
-- **Supported Assets**: Material, Material Instance, NiagaraSystem, NiagaraEmitter
+- **Supported Assets**: Material, Material Instance, NiagaraSystem
 - **Output Format**: Markdown (.md)
 - **Platform Support**: Win64; The plugin should work for Mac, Linux but do not test. 
 - **Engine Version**: UE 5.6+
