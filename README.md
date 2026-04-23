@@ -1,10 +1,10 @@
-# Documentaion for ExportCodeOfMaterial Plugin
+# ExportCodeOfMaterial
 
 Export materials to HLSL shader code files for analysis and debugging.
 
 ## Overview
 
-ExportCodeOfMaterial is an editor plugin that converts UE materials into readable HLSL code. It extracts material properties, shader parameters, and generated HLSL code into markdown files that can be reviewed, shared, or used for learning shader development.
+ExportCodeOfMaterial is an editor plugin that converts UE materials and Niagara systems into readable HLSL code. It extracts material properties, shader parameters, generated HLSL code, and Niagara emitter scripts into markdown files that can be reviewed, shared, or used for learning shader development.
 
 ## Installation
 
@@ -17,17 +17,35 @@ ExportCodeOfMaterial is an editor plugin that converts UE materials into readabl
 
 - EditorScriptingUtilities (enabled by default)
 
+## Configuration
+
+Configure the plugin via **Project Settings**:
+
+1. Go to **Project Settings > Export Code Of Material**
+2. Set the **Export Output Directory** path
+3. Set the **Export NiagaraHLSL Output Directory** path
+
+![HLSL Code Export Settings](HLSLCode_Export_Settings.jpg)
+
+Default output folders:
+- Material: `ProjectDir/ExportedMaterialHLSL/`
+- Niagara: `ProjectDir/ExportedNiagaraHLSL/`
+
 ## Usage
 
-### Console Command
+### Console Commands
 
 Open the console (~) and type:
 
 ```
 ExportMaterialHLSL
 ```
+Export all materials under `/Game/` to the output folder. Default: `ProjectDir/ExportedMaterialHLSL/`
 
-This exports all materials under `/Game/` to the output folder.Default to Project/ExportedMaterialHLSL
+```
+ExportNiagaraHLSL
+```
+Export all Niagara Systems under `/Game/` to the output folder. Default: `ProjectDir/ExportedNiagaraHLSL/`
 
 ### Export Selected Materials
 
@@ -37,6 +55,14 @@ This exports all materials under `/Game/` to the output folder.Default to Projec
 
 ![Export Selected Material](Export_Selected_Material.jpg)
 
+### Export Selected Niagara Systems
+
+1. Select one or more Niagara Systems in the Content Browser
+2. Right-click to open the context menu
+3. Select **Export Niagara HLSL Code**
+
+![Export Selected Niagara](Export_Selected_Niagara.jpg)
+
 ### Export All Materials
 
 1. Open the Asset menu in the Content Browser
@@ -44,27 +70,35 @@ This exports all materials under `/Game/` to the output folder.Default to Projec
 
 ![Export All Material HLSL](ExportAllMaterial_HLSL.jpg)
 
-## Configuration
+### Export All Niagara Systems
 
-Configure the plugin via **Project Settings**:
+1. Open the Asset menu in the Content Browser
+2. Select **Export Niagara HLSL**
 
-1. Go to **Project Settings > Export Code Of Material**
-2. Set the **Export Output Directory** path
+![Export All Niagara](ExportAllNiagara_HLSL.jpg)
 
-![HLSL Code Export Settings](HLSLCode_Export_Settings.jpg)
+## Export Examples
 
-Default output folder: `ProjectDir/ExportedMaterialHLSL/`
+### Material Export Output
 
-## Output Format
-
-Each export creates a `.md` file containing:
+Each material export creates a `.md` file containing:
 
 - **Material Properties**: Blend mode, shading models, two-sided, opacity mask
 - **Material Parameters**: Scalar, vector, texture, and static switch parameters
 - **Material Input Section**: Custom expression functions and input connections
 - **Full HLSL Code**: Generated shader code
 
-![Example Exported HLSL Code](Example_Exported_HLSLCode.jpg)
+![Example Material HLSL Export](Example_Material_Exported_HLSLCode.jpg)
+
+### Niagara Export Output
+
+Each Niagara export creates a `.md` file containing:
+
+- **Niagara Properties**: System configuration, emitter details
+- **Emitter Scripts**: Script types and usage
+- **Generated GPU HLSL Code**: Per-emitter shader code
+
+![Example Niagara HLSL Export](Example_Niagara_Exported_HLSLCode.jpg)
 
 ### Alternative HLSL Viewing Methods
 
@@ -102,7 +136,7 @@ If HLSL generation fails, try these alternatives:
 
 ## Technical Details
 
-- **Supported Materials**: Material, Material Instance
+- **Supported Assets**: Material, Material Instance, NiagaraSystem, NiagaraEmitter
 - **Output Format**: Markdown (.md)
 - **Platform Support**: Win64; The plugin should work for Mac, Linux but do not test. 
 - **Engine Version**: UE 5.6+
